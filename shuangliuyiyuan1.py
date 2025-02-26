@@ -148,6 +148,9 @@ def send_wechat(msg):
 def check_appointments():
     """主检查逻辑"""
     log("开始检查号源...")
+    current_time = datetime.now().strftime('%Y-%m-%d %H:%M')
+
+    log("current_time:"+current_time)
     data = fetch_data()
     if not data:
         return
@@ -171,6 +174,7 @@ def check_appointments():
 
 if __name__ == "__main__":
     log("号源监控已启动...")
+
     schedule.every(1).minutes.do(check_appointments)
 
     try:
